@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Image } from '../../images/entities/image.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'settings' })
 export class Setting {
@@ -10,4 +11,7 @@ export class Setting {
 
   @Column()
   subtitle: string;
+
+  @OneToMany(() => Image, (img) => img.setting)
+  images: Image[];
 }
