@@ -17,12 +17,13 @@ export class SettingsService {
   }
 
   async findAll() {
-    return await this.repo.find();
+    return await this.repo.find({ relations: { images: true } });
   }
 
   async findOne(id: string) {
     const setting = await this.repo.findOne({
       where: { id },
+      relations: { images: true },
     });
     if (!setting) throw new NotFoundException('Setting not found');
     return setting;
